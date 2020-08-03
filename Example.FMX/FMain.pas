@@ -169,7 +169,7 @@ end;
 
 procedure TFormMain.ButtonEncodeJWTClick(Sender: TObject);
 var
-  JavaWebToken: String;
+  JSONWebToken: String;
   PrivateKey: RawByteString;
   PrivateKeyBytes: TBytes;
   JWT: TgoJWT;
@@ -183,9 +183,9 @@ begin
   JWT.Initialize(MemoHeader2.Text, MemoPayload2.Text);
 
   { Sign the JWT }
-  if JWT.Sign(PrivateKeyBytes, JavaWebToken) then
+  if JWT.Sign(PrivateKeyBytes, JSONWebToken) then
   begin
-    MemoJWT2.Text := JavaWebToken;
+    MemoJWT2.Text := JSONWebToken;
     MemoSignature2.Text := BytesToHex(JWT.Signature);
     ShowMessage('Encoded!');
   end
@@ -196,16 +196,16 @@ end;
 procedure TFormMain.ButtonVerifyJWTClick(Sender: TObject);
 var
   JWT: TgoJWT;
-  JavaWebToken: String;
+  JSONWebToken: String;
   PublicKey: RawByteString;
-  JavaWebTokenBytes, PublicKeyBytes: TBytes;
+  JSONWebTokenBytes, PublicKeyBytes: TBytes;
 begin
   if JWT.Decode(MemoJWT1.Text) then
   begin
     { Extract the JWT from the memo }
-    JavaWebToken := MemoJWT1.Text;
-    SetLength(JavaWebTokenBytes, Length(JavaWebToken));
-    Move(JavaWebToken[1], JavaWebTokenBytes[0], Length(JavaWebToken));
+    JSONWebToken := MemoJWT1.Text;
+    SetLength(JSONWebTokenBytes, Length(JSONWebToken));
+    Move(JSONWebToken[1], JSONWebTokenBytes[0], Length(JSONWebToken));
 
     { Extract the Public Key from the memo }
     PublicKey := RawByteString(MemoPublicKey.Text);
@@ -213,7 +213,7 @@ begin
     Move(PublicKey[1], PublicKeyBytes[0], Length(PublicKey));
 
     { Verify the JWT was signed using the Public Key }
-    if JWT.VerifyWithPublicKey(JavaWebToken, PublicKeyBytes) then
+    if JWT.VerifyWithPublicKey(JSONWebToken, PublicKeyBytes) then
       ShowMessage('Verified!')
     else
       ShowMessage('Failed Verify!');

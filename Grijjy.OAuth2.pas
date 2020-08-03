@@ -1,5 +1,5 @@
 unit Grijjy.OAuth2;
-{ Routines for handling OAuth2 and Java Web Tokens }
+{ Routines for handling OAuth2 and JSON Web Tokens }
 
 { Note: Currently only supports RS256 }
 
@@ -26,7 +26,7 @@ type
     { Initialize the header parameters }
     procedure Initialize;
 
-    { Decodes java web token header as json }
+    { Decodes json web token header as json }
     function FromJson(const AHeader: TBytes): Boolean;
 
     { Returns a Json string of the header }
@@ -51,7 +51,7 @@ type
     { Initialize the claim set parameters }
     procedure Initialize;
 
-    { Decodes java web token payload as json }
+    { Decodes json web token payload as json }
     function FromJson(const APayload: TBytes): Boolean;
 
     { Returns a Json string of the claim set }
@@ -74,7 +74,7 @@ type
   end;
 
 type
-  { Java Web Token }
+  { JSON Web Token }
   TgoJWT = record
   private
     FHeader: TBytes;
@@ -94,24 +94,24 @@ type
         APayload: the data payload for the token }
     procedure Initialize(const AHeader, APayload: String); overload;
 
-    { Decodes a java web token into the header, payload and signature parts
+    { Decodes a json web token into the header, payload and signature parts
 
       Parameters:
-        AJavaWebToken: the encoded token
+        AJsonWebToken: the encoded token
 
       Returns:
         True if the token was decoded, False otherwise }
-    function Decode(const AJavaWebToken: String): Boolean;
+    function Decode(const AJsonWebToken: String): Boolean;
 
-    { Signs the java web token using the provided private key or secret
+    { Signs the json web token using the provided private key or secret
 
       Parameters:
         APrivateKey: the private key or secret
-        AJavaWebToken: the encoded and signed token
+        AJsonWebToken: the encoded and signed token
 
       Returns:
         True if the token was successfully signed along with the resulting token, False otherwise }
-    function Sign(const APrivateKey: TBytes; out AJavaWebToken: String): Boolean;
+    function Sign(const APrivateKey: TBytes; out AJsonWebToken: String): Boolean;
 
     { Verifies the token was signed with the provided private key
 
@@ -127,12 +127,12 @@ type
     { Verifies the token was signed with the provided private key
 
       Parameters:
-        AJavaWebToken: the encoded token
+        AJsonWebToken: the encoded token
         APrivateKey: the private key or secret
 
       Returns:
         True if the token signature was verified, False otherwise }
-    function VerifyWithPrivateKey(const AJavaWebToken: String; const APrivateKey: TBytes): Boolean; overload;
+    function VerifyWithPrivateKey(const AJsonWebToken: String; const APrivateKey: TBytes): Boolean; overload;
 
     { Verifies the token was signed with the provided private key
 
@@ -146,14 +146,14 @@ type
     { Verifies the token was signed with a private key associated with the provided public key
 
       Parameters:
-        AJavaWebToken: the encoded token
+        AJsonWebToken: the encoded token
         APublicKey: the public key
 
       Returns:
         True if the token signature was verified, False otherwise
 
       Note: The public key can be in the form of a PEM formatted RSA PUBLIC KEY or CERTIFICATE }
-    function VerifyWithPublicKey(const AJavaWebToken: String; const APublicKey: TBytes): Boolean;
+    function VerifyWithPublicKey(const AJsonWebToken: String; const APublicKey: TBytes): Boolean;
   public
     { Web token header }
     property Header: TBytes read FHeader write FHeader;
@@ -286,12 +286,12 @@ begin
   FPayload := TEncoding.UTF8.GetBytes(APayload);
 end;
 
-function TgoJWT.Decode(const AJavaWebToken: String): Boolean;
+function TgoJWT.Decode(const AJsonWebToken: String): Boolean;
 var
   Parts: TArray<String>;
 begin
   { Must contain 3 parts }
-  Parts := AJavaWebToken.Split(['.']);
+  Parts := AJsonWebToken.Split(['.']);
   if Length(Parts) < 3 then
     Exit(False);
 
@@ -301,7 +301,7 @@ begin
   Result := True;
 end;
 
-function TgoJWT.Sign(const APrivateKey: TBytes; out AJavaWebToken: String): Boolean;
+function TgoJWT.Sign(const APrivateKey: TBytes; out AJsonWebToken: String): Boolean;
 var
   Data: String;
 begin
@@ -309,7 +309,7 @@ begin
   if not TgoOpenSSLHelper.Sign_RSASHA256(TEncoding.Utf8.GetBytes(Data), APrivateKey, FSignature) then
     Exit(False);
 
-  AJavaWebToken := Data + '.' + Base64UrlEncode(FSignature);
+  AJsonWebToken := Data + '.' + Base64UrlEncode(FSignature);
   Result := True;
 end;
 
@@ -323,13 +323,13 @@ begin
     Result := False;
 end;
 
-function TgoJWT.VerifyWithPrivateKey(const AJavaWebToken: String; const APrivateKey: TBytes): Boolean;
+function TgoJWT.VerifyWithPrivateKey(const AJsonWebToken: String; const APrivateKey: TBytes): Boolean;
 var
   Parts: TArray<String>;
   Data, Signature: TBytes;
 begin
   { Must contain 3 parts }
-  Parts := AJavaWebToken.Split(['.']);
+  Parts := AJsonWebToken.Split(['.']);
   if Length(Parts) < 3 then
     Exit(False);
 
@@ -346,14 +346,14 @@ begin
   Result := VerifyWithPrivateKey(TEncoding.Utf8.GetBytes(Data), FSignature, APrivateKey);
 end;
 
-function TgoJWT.VerifyWithPublicKey(const AJavaWebToken: String; const APublicKey: TBytes): Boolean;
+function TgoJWT.VerifyWithPublicKey(const AJsonWebToken: String; const APublicKey: TBytes): Boolean;
 var
   Parts: TArray<String>;
   Header, Payload: TBytes;
   Signature: TBytes;
 begin
   { Must contain 3 parts }
-  Parts := AJavaWebToken.Split(['.']);
+  Parts := AJsonWebToken.Split(['.']);
   if Length(Parts) < 3 then
     Exit(False);
 

@@ -1,4 +1,4 @@
-In this article we are going to discuss how to use the latest version of OpenSsl 1.1.1 with Delphi directly to create X.509 certificates, decode, verify, encode and sign Java Web Tokens and generate random data.  Additionally we will do this in a way that works on Delphi supported platforms including Windows, macOS, iOS, Android and Linux as well as all current compiler targets for 32 and 64-bit devices.
+In this article we are going to discuss how to use the latest version of OpenSsl 1.1.1 with Delphi directly to create X.509 certificates, decode, verify, encode and sign JSON Web Tokens and generate random data.  Additionally we will do this in a way that works on Delphi supported platforms including Windows, macOS, iOS, Android and Linux as well as all current compiler targets for 32 and 64-bit devices.
 
 # Introduction
 
@@ -10,11 +10,11 @@ Here at Grijjy we use OpenSsl to implement TLS secure communications over the ne
 
 This is a fundamental issue with using the platform-native (or integrated) approach to HTTP/S and sockets when you need TLS.  While you get the advantage of not distributing OpenSsl, it can lead to unpredictable behavior from device to device and from machine to machine for simple tasks such as hashing, HTTP/S and other operations.  How one platform-native HTTP/S client handles asynchronous and/or synchronous requests or parallel threads, can vary widely.
 
-Besides the obvious HTTP/S usage, OpenSsl contains a wealth of useful routines that you can use in your Delphi projects.  This article will cover just some of those use cases including using OpenSsl to create random bytes, creating your own X.509 certificates and using OpenSsl for handling Java Web Tokens (JWT) .   I like simple, straight-forward examples so this is by no means an exhaustive look at these subjects and is only intended as a primer for using OpenSsl with Delphi.  
+Besides the obvious HTTP/S usage, OpenSsl contains a wealth of useful routines that you can use in your Delphi projects.  This article will cover just some of those use cases including using OpenSsl to create random bytes, creating your own X.509 certificates and using OpenSsl for handling JSON Web Tokens (JWT) .   I like simple, straight-forward examples so this is by no means an exhaustive look at these subjects and is only intended as a primer for using OpenSsl with Delphi.  
 
-## Java Web Tokens
+## JSON Web Tokens
 
-Java Web Tokens are very popular as a way to provide the secure exchange of information between applications in the cloud over just exchanging regular access tokens.  They are widely used by many services and APIs available in the cloud like those offered by Google.
+JSON Web Tokens are very popular as a way to provide the secure exchange of information between applications in the cloud over just exchanging regular access tokens.  They are widely used by many services and APIs available in the cloud like those offered by Google.
 
 Traditionally, access tokens are used in OAuth models.  While both access tokens and JWTs are used for similar purposes they each have their own characteristics that make them suitable to certain scenarios.  With an access token, typically an implementation needs to track the token and lookup whether it has expired or what other detail is related to the token.  At Grijjy we typically cache tokens into memory and a database and then expire them (delete them) when their expiration interval is up.  Access tokens require that all the details of the token are maintained until it is no longer needed.
 
@@ -29,7 +29,7 @@ Personally I feel that JWTs can be very efficient, especially if you validate th
 Decoding a JWT is a straightforward process of separating the entire token into 3 logical parts; the header, the payload and the signature.  For simplicity sake we created a small helper record in Delphi to assist with decoding, verifying, encoding and signing the JWT using OpenSsl.
 
 ```pascal
-  { Java Web Token }
+  { JSON Web Token }
   TgoJWT = record
   private
     FHeader: TBytes;
@@ -49,24 +49,24 @@ Decoding a JWT is a straightforward process of separating the entire token into 
         APayload: the data payload for the token }
     procedure Initialize(const AHeader, APayload: String); overload;
 
-    { Decodes a java web token into the header, payload and signature parts
+    { Decodes a json web token into the header, payload and signature parts
 
       Parameters:
-        AJavaWebToken: the encoded token
+        AJSONWebToken: the encoded token
 
       Returns:
         True if the token was decoded, False otherwise }
-    function Decode(const AJavaWebToken: String): Boolean;
+    function Decode(const AJSONWebToken: String): Boolean;
 
-    { Signs the java web token using the provided private key or secret
+    { Signs the json web token using the provided private key or secret
 
       Parameters:
         APrivateKey: the private key or secret
-        AJavaWebToken: the encoded and signed token
+        AJSONWebToken: the encoded and signed token
 
       Returns:
         True if the token was successfully signed along with the resulting token, False otherwise }
-    function Sign(const APrivateKey: TBytes; out AJavaWebToken: String): Boolean;
+    function Sign(const APrivateKey: TBytes; out AJSONWebToken: String): Boolean;
 
     { Verifies the token was signed with the provided private key
 
@@ -82,12 +82,12 @@ Decoding a JWT is a straightforward process of separating the entire token into 
     { Verifies the token was signed with the provided private key
 
       Parameters:
-        AJavaWebToken: the encoded token
+        AJSONWebToken: the encoded token
         APrivateKey: the private key or secret
 
       Returns:
         True if the token signature was verified, False otherwise }
-    function VerifyWithPrivateKey(const AJavaWebToken: String; const APrivateKey: TBytes): Boolean; overload;
+    function VerifyWithPrivateKey(const AJSONWebToken: String; const APrivateKey: TBytes): Boolean; overload;
 
     { Verifies the token was signed with the provided private key
 
@@ -101,14 +101,14 @@ Decoding a JWT is a straightforward process of separating the entire token into 
     { Verifies the token was signed with a private key associated with the provided public key
 
       Parameters:
-        AJavaWebToken: the encoded token
+        AJSONWebToken: the encoded token
         APublicKey: the public key
 
       Returns:
         True if the token signature was verified, False otherwise
 
       Note: The public key can be in the form of a PEM formatted RSA PUBLIC KEY or CERTIFICATE }
-    function VerifyWithPublicKey(const AJavaWebToken: String; const APublicKey: TBytes): Boolean;
+    function VerifyWithPublicKey(const AJSONWebToken: String; const APublicKey: TBytes): Boolean;
   public
     { Web token header }
     property Header: TBytes read FHeader write FHeader;
@@ -127,19 +127,19 @@ We have included an example Firemonkey application and source code demonstrates 
 
 ![](https://bloggrijjy.files.wordpress.com/2020/08/decode-jwt.jpg)
 
-In the above example, the Encoded memo contains the entire Java Web Token.  By clicking decode, it decodes the header and payload and the signature.  Clicking verify will check to make sure that the JWT is signed properly by checking the signature against the public key that is provided under the Certificate tab in the example application.
+In the above example, the Encoded memo contains the entire JSON Web Token.  By clicking decode, it decodes the header and payload and the signature.  Clicking verify will check to make sure that the JWT is signed properly by checking the signature against the public key that is provided under the Certificate tab in the example application.
 
 Internally the routine ```VerifyWithPublicKey()``` uses the OpenSsl method ```PEM_read_bio_RSAPublicKey``` to load the PEM public key certificate and the ```EVP_DigestVerify``` APIs to verify the signature is correct.
 
 ### Encoding and signing a JWT
 
-Encoding a JWT follows a similar approach.  You supply the header and the payload and it this content is signed to form a complete encoded Java Web Token.
+Encoding a JWT follows a similar approach.  You supply the header and the payload and it this content is signed to form a complete encoded JSON Web Token.
 
 Our example application also demonstrates the ability to encode and sign the JWT.  Internally it OpenSsl methods ```PEM_read_bio_PrivateKey``` to load the private key and the ```EVP_DigestSign``` related methods to create the signature for the JWT.  
 
 ![](https://bloggrijjy.files.wordpress.com/2020/08/encode-jwt.jpg)
 
-Our helper only handles RS256 signing and verification methods and Java Web Tokens support many other signing strategies.  These other algorithms could easily be adapted to the helper using other OpenSsl support methods.
+Our helper only handles RS256 signing and verification methods and JSON Web Tokens support many other signing strategies.  These other algorithms could easily be adapted to the helper using other OpenSsl support methods.
 
 ## X.509 Self-Signed Certificates
 
