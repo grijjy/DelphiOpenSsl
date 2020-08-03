@@ -125,9 +125,7 @@ To keep things simple, the record contains a method called ```Decode()``` that s
 
 We have included an example Firemonkey application and source code demonstrates the process of decoding and verifying the signature.
 
-![image-20200803080546541](C:\Users\Allen\AppData\Roaming\Typora\typora-user-images\image-20200803080546541.png)
-
-
+![](https://bloggrijjy.files.wordpress.com/2020/08/decode-jwt.jpg)
 
 In the above example, the Encoded memo contains the entire Java Web Token.  By clicking decode, it decodes the header and payload and the signature.  Clicking verify will check to make sure that the JWT is signed properly by checking the signature against the public key that is provided under the Certificate tab in the example application.
 
@@ -139,7 +137,7 @@ Encoding a JWT follows a similar approach.  You supply the header and the payloa
 
 Our example application also demonstrates the ability to encode and sign the JWT.  Internally it OpenSsl methods ```PEM_read_bio_PrivateKey``` to load the private key and the ```EVP_DigestSign``` related methods to create the signature for the JWT.  
 
-![encode-jwt](C:\Users\Allen\Desktop\Grijjy\Blogging\DelphiOpenSsl\encode-jwt.JPG)
+![](https://bloggrijjy.files.wordpress.com/2020/08/encode-jwt.jpg)
 
 Our helper only handles RS256 signing and verification methods and Java Web Tokens support many other signing strategies.  These other algorithms could easily be adapted to the helper using other OpenSsl support methods.
 
@@ -203,7 +201,7 @@ The class exposes 2 class methods for creating X.509 self-signed certificates us
 
 Our example application demonstrates the creation of simple X.509 certificates in Delphi:
 
-![image-20200803105439650](C:\Users\Allen\AppData\Roaming\Typora\typora-user-images\image-20200803105439650.png) 
+![](https://bloggrijjy.files.wordpress.com/2020/08/x509-cert.jpg)
 
 When you create the certificate, the information you provided is included in the construction of the certificate.  If you are using the certificate with a server that implements SNI (server name indication), then the server name of the certificate needs to be specified.
 
@@ -284,11 +282,9 @@ You can use these same routines inside of Delphi if you want to generate random 
   end;
 ```
 
-If you need to generate random sequences the `rand()` method in OpenSsl can be very useful.  We also demonstrate how this could be used in the example applicaition:
+If you need to generate random sequences the `rand()` method in OpenSsl can be very useful.  We also demonstrate how this could be used in the example application:
 
-![image-20200803112423880](C:\Users\Allen\AppData\Roaming\Typora\typora-user-images\image-20200803112423880.png)
-
-
+![](https://bloggrijjy.files.wordpress.com/2020/08/random.jpg)
 
 ## Building OpenSsl for Delphi platforms
 
