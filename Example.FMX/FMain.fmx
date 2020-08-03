@@ -1,0 +1,648 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = 'Delphi OpenSsl'
+  ClientHeight = 572
+  ClientWidth = 486
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object HeaderToolBar: TToolBar
+    Anchors = []
+    Size.Width = 486.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ToolBarLabel: TLabel
+      Align = Contents
+      Size.Width = 486.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+      Text = 'Delphi OpenSsl'
+    end
+  end
+  object TabControlMain: TTabControl
+    Align = Client
+    FullSize = True
+    Size.Width = 486.000000000000000000
+    Size.Height = 524.000000000000000000
+    Size.PlatformDefault = False
+    TabHeight = 49.000000000000000000
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    Sizes = (
+      486s
+      475s
+      486s
+      475s
+      486s
+      475s
+      486s
+      475s
+      486s
+      475s)
+    object TabItemDecodeJWT: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 96.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemtoprated'
+      TabOrder = 0
+      Text = 'Decode JWT'
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object MemoJWT1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          
+            'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiw' +
+            'ibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0' +
+            '.POstGetfAytaZS82wHcjoTyoqhMyxXiWdR7Nn7A29DNSl0EiXLdwJ6xC6AfgZWF' +
+            '1bOsS_TuYI3OG85AmiExREkrS6tDfTQ2B3WXlrr-wp5AokiRbz3_oB4OxG-W9KcE' +
+            'EbDRcZc0nH3L7LzYptiy1PtAylQGxHTWZXtGz4ht0bAecBgmpdgXMguEIcoqPJ1n' +
+            '3pIWk_dUZegpqx0Lka21H6XxUTxiy8OcaarA8zdnPUnV6AmNP3ecFawIFYdvJB_c' +
+            'm-GvpCSbr8G8y_Mllj8f4x9nBH8pQux89_6gUY618iYv7tuPWBFfEbLxtF2pZS6Y' +
+            'C1aSfLQxeNe8djT9YjpvRZA')
+        TextSettings.WordWrap = True
+        Position.X = 8.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 321.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 317.000000000000000000
+      end
+      object MemoHeader1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 248.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
+      end
+      object MemoPayload1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 248.000000000000000000
+        Position.Y = 160.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
+      end
+      object LabelEncoded1: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        Text = 'Encoded'
+        TabOrder = 10
+      end
+      object LabelHeader1: TLabel
+        Position.X = 248.000000000000000000
+        Position.Y = 16.000000000000000000
+        Text = 'Header'
+        TabOrder = 9
+      end
+      object LabelPayload1: TLabel
+        Position.X = 248.000000000000000000
+        Position.Y = 136.000000000000000000
+        Text = 'Payload'
+        TabOrder = 8
+      end
+      object ButtonDecodeJWT: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 376.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Text = 'Decode Java Web Token'
+        OnClick = ButtonDecodeJWTClick
+      end
+      object LabelSignature1: TLabel
+        Position.X = 248.000000000000000000
+        Position.Y = 256.000000000000000000
+        Text = 'Signature'
+        TabOrder = 7
+      end
+      object MemoSignature1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 248.000000000000000000
+        Position.Y = 280.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
+      end
+      object ButtonVerifyJWT: TButton
+        Position.X = 248.000000000000000000
+        Position.Y = 376.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        Text = 'Verify Java Web Token'
+        OnClick = ButtonVerifyJWTClick
+      end
+      object ButtonResetDecode: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 408.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'Reset'
+        OnClick = ButtonResetDecodeClick
+      end
+    end
+    object TabItemEncodeJWT: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 96.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemcontacts'
+      TabOrder = 0
+      Text = 'Encode JWT'
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object MemoJWT2: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 248.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 321.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 317.000000000000000000
+      end
+      object LabelEncoded2: TLabel
+        Position.X = 248.000000000000000000
+        Position.Y = 16.000000000000000000
+        Text = 'Encoded'
+        TabOrder = 9
+      end
+      object LabelHeader2: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        Text = 'Header'
+        TabOrder = 8
+      end
+      object MemoHeader2: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          '{"alg":"RS256","typ":"JWT"}')
+        TextSettings.WordWrap = True
+        Position.X = 8.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
+      end
+      object LabelPayload2: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 136.000000000000000000
+        Text = 'Payload'
+        TabOrder = 7
+      end
+      object MemoPayload2: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          
+            '{"sub":"1234567890","name":"John Doe","admin":true,"iat":1516239' +
+            '022}')
+        TextSettings.WordWrap = True
+        Position.X = 8.000000000000000000
+        Position.Y = 160.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
+      end
+      object LabelSignature2: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 256.000000000000000000
+        Text = 'Signature'
+        TabOrder = 6
+      end
+      object MemoSignature2: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 8.000000000000000000
+        Position.Y = 280.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
+      end
+      object ButtonEncodeJWT: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 376.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Text = 'Encode Java Web Token'
+        OnClick = ButtonEncodeJWTClick
+      end
+      object ButtonResetEncode: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 408.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'Reset'
+        OnClick = ButtonResetEncodeClick
+      end
+    end
+    object TabItemJWTCertificate: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 96.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemrecent'
+      TabOrder = 0
+      Text = 'JWT Cert'
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object LabelPublicKey: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Public Key'
+        TabOrder = 12
+      end
+      object MemoPublicKey: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          '-----BEGIN PUBLIC KEY-----'
+          'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnzyis1ZjfNB0bBgKFMSv'
+          'vkTtwlvBsaJq7S5wA+kzeVOVpVWwkWdVha4s38XM/pa/yr47av7+z3VTmvDRyAHc'
+          'aT92whREFpLv9cj5lTeJSibyr/Mrm/YtjCZVWgaOYIhwrXwKLqPr/11inWsAkfIy'
+          'tvHWTxZYEcXLgAXFuUuaS3uF9gEiNQwzGTU1v0FqkqTBr4B8nW3HCN47XUu0t8Y0'
+          'e+lf4s4OxQawWD79J9/5d3Ry0vbV3Am1FtGJiJvOwRsIfVChDpYStTcHTCMqtvWb'
+          'V6L11BWkpzGXSW4Hv43qa+GSYOD2QU68Mb59oSk2OB+BtOLpJofmbGEGgvmwyCI9'
+          'MwIDAQAB'
+          '-----END PUBLIC KEY-----')
+        TextSettings.WordWrap = True
+        Position.X = 8.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 457.000000000000000000
+        Size.Height = 169.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Viewport.Width = 453.000000000000000000
+        Viewport.Height = 165.000000000000000000
+      end
+      object LabelPrivateKey: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 224.000000000000000000
+        Text = 'Private Key'
+        TabOrder = 10
+      end
+      object MemoPrivateKey: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          '-----BEGIN RSA PRIVATE KEY-----'
+          'MIIEogIBAAKCAQEAnzyis1ZjfNB0bBgKFMSvvkTtwlvBsaJq7S5wA+kzeVOVpVWw'
+          'kWdVha4s38XM/pa/yr47av7+z3VTmvDRyAHcaT92whREFpLv9cj5lTeJSibyr/Mr'
+          'm/YtjCZVWgaOYIhwrXwKLqPr/11inWsAkfIytvHWTxZYEcXLgAXFuUuaS3uF9gEi'
+          'NQwzGTU1v0FqkqTBr4B8nW3HCN47XUu0t8Y0e+lf4s4OxQawWD79J9/5d3Ry0vbV'
+          '3Am1FtGJiJvOwRsIfVChDpYStTcHTCMqtvWbV6L11BWkpzGXSW4Hv43qa+GSYOD2'
+          'QU68Mb59oSk2OB+BtOLpJofmbGEGgvmwyCI9MwIDAQABAoIBACiARq2wkltjtcjs'
+          'kFvZ7w1JAORHbEufEO1Eu27zOIlqbgyAcAl7q+/1bip4Z/x1IVES84/yTaM8p0go'
+          'amMhvgry/mS8vNi1BN2SAZEnb/7xSxbflb70bX9RHLJqKnp5GZe2jexw+wyXlwaM'
+          '+bclUCrh9e1ltH7IvUrRrQnFJfh+is1fRon9Co9Li0GwoN0x0byrrngU8Ak3Y6D9'
+          'D8GjQA4Elm94ST3izJv8iCOLSDBmzsPsXfcCUZfmTfZ5DbUDMbMxRnSo3nQeoKGC'
+          '0Lj9FkWcfmLcpGlSXTO+Ww1L7EGq+PT3NtRae1FZPwjddQ1/4V905kyQFLamAA5Y'
+          'lSpE2wkCgYEAy1OPLQcZt4NQnQzPz2SBJqQN2P5u3vXl+zNVKP8w4eBv0vWuJJF+'
+          'hkGNnSxXQrTkvDOIUddSKOzHHgSg4nY6K02ecyT0PPm/UZvtRpWrnBjcEVtHEJNp'
+          'bU9pLD5iZ0J9sbzPU/LxPmuAP2Bs8JmTn6aFRspFrP7W0s1Nmk2jsm0CgYEAyH0X'
+          '+jpoqxj4efZfkUrg5GbSEhf+dZglf0tTOA5bVg8IYwtmNk/pniLG/zI7c+GlTc9B'
+          'BwfMr59EzBq/eFMI7+LgXaVUsM/sS4Ry+yeK6SJx/otIMWtDfqxsLD8CPMCRvecC'
+          '2Pip4uSgrl0MOebl9XKp57GoaUWRWRHqwV4Y6h8CgYAZhI4mh4qZtnhKjY4TKDjx'
+          'QYufXSdLAi9v3FxmvchDwOgn4L+PRVdMwDNms2bsL0m5uPn104EzM6w1vzz1zwKz'
+          '5pTpPI0OjgWN13Tq8+PKvm/4Ga2MjgOgPWQkslulO/oMcXbPwWC3hcRdr9tcQtn9'
+          'Imf9n2spL/6EDFId+Hp/7QKBgAqlWdiXsWckdE1Fn91/NGHsc8syKvjjk1onDcw0'
+          'NvVi5vcba9oGdElJX3e9mxqUKMrw7msJJv1MX8LWyMQC5L6YNYHDfbPF1q5L4i8j'
+          '8mRex97UVokJQRRA452V2vCO6S5ETgpnad36de3MUxHgCOX3qL382Qx9/THVmbma'
+          '3YfRAoGAUxL/Eu5yvMK8SAt/dJK6FedngcM3JEFNplmtLYVLWhkIlNRGDwkg3I5K'
+          'y18Ae9n7dHVueyslrb6weq7dTkYDi3iOYRW8HRkIQh06wEdbxt0shTzAJvvCQfrB'
+          'jg/3747WSsf/zBTcHihTRBdAv6OmdhV4/dD5YBfLAkLrd+mX7iE='
+          '-----END RSA PRIVATE KEY-----')
+        TextSettings.WordWrap = True
+        Position.X = 8.000000000000000000
+        Position.Y = 248.000000000000000000
+        Size.Width = 457.000000000000000000
+        Size.Height = 153.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Viewport.Width = 437.000000000000000000
+        Viewport.Height = 149.000000000000000000
+      end
+    end
+    object TabItemX509Cert: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 96.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'X.509 Cert'
+      object EditCountry: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        Text = 'US'
+        Position.X = 8.000000000000000000
+        Position.Y = 39.000000000000000000
+        Size.Width = 49.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelCountry: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 15.000000000000000000
+        Text = 'Country'
+      end
+      object LabelState: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 71.000000000000000000
+        Text = 'State'
+      end
+      object EditState: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 1
+        Text = 'California'
+        Position.X = 8.000000000000000000
+        Position.Y = 95.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelLocality: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 127.000000000000000000
+        Text = 'Locality'
+      end
+      object EditLocality: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 2
+        Text = 'San Diego'
+        Position.X = 8.000000000000000000
+        Position.Y = 151.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelOrganization: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 183.000000000000000000
+        Text = 'Organization'
+      end
+      object EditOrganization: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 3
+        Text = 'Grijjy'
+        Position.X = 8.000000000000000000
+        Position.Y = 207.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelOrgUnit: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 239.000000000000000000
+        Text = 'Org Unit'
+      end
+      object EditOrgUnit: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 4
+        Text = 'OU'
+        Position.X = 8.000000000000000000
+        Position.Y = 263.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelCommonName: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 295.000000000000000000
+        Text = 'Common Name'
+      end
+      object EditCommonName: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 5
+        Text = 'grijjy.com'
+        Position.X = 8.000000000000000000
+        Position.Y = 319.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelServerName: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 351.000000000000000000
+        Text = 'Server Name'
+      end
+      object EditServerName: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 6
+        Text = 'www.grijjy.com'
+        Position.X = 8.000000000000000000
+        Position.Y = 375.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelExpiresDays: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 407.000000000000000000
+        Text = 'Expires Days'
+      end
+      object EditExpiresDays: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 7
+        Text = '365'
+        Position.X = 8.000000000000000000
+        Position.Y = 431.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object LabelX509Certificate: TLabel
+        Position.X = 168.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Certificate'
+        TabOrder = 16
+      end
+      object MemoX509Certificate: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 168.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 305.000000000000000000
+        Size.Height = 201.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 8
+        Viewport.Width = 301.000000000000000000
+        Viewport.Height = 197.000000000000000000
+      end
+      object LabelX509PrivateKey: TLabel
+        Position.X = 168.000000000000000000
+        Position.Y = 264.000000000000000000
+        Text = 'Private Key'
+        TabOrder = 14
+      end
+      object MemoX509PrivateKey: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        TextSettings.WordWrap = True
+        Position.X = 168.000000000000000000
+        Position.Y = 288.000000000000000000
+        Size.Width = 305.000000000000000000
+        Size.Height = 121.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 9
+        Viewport.Width = 301.000000000000000000
+        Viewport.Height = 117.000000000000000000
+      end
+      object ButtonCreateX509: TButton
+        Position.X = 248.000000000000000000
+        Position.Y = 424.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        Text = 'Create X.509 Certificate'
+        OnClick = ButtonCreateX509Click
+      end
+    end
+    object TabItemRandom: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 100.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Random'
+      object LabelRandomString: TLabel
+        Position.X = 16.000000000000000000
+        Position.Y = 31.000000000000000000
+        Text = 'Random String'
+      end
+      object EditRandomString: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 2
+        Position.X = 16.000000000000000000
+        Position.Y = 55.000000000000000000
+        Size.Width = 289.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ButtonRandomString: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 11
+        Text = 'Create Random String'
+        OnClick = ButtonRandomStringClick
+      end
+      object LabelRandomDigits: TLabel
+        Position.X = 16.000000000000000000
+        Position.Y = 135.000000000000000000
+        Text = 'Random Digits'
+      end
+      object EditRandomDigits: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 1
+        Position.X = 16.000000000000000000
+        Position.Y = 159.000000000000000000
+        Size.Width = 289.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ButtonRandomDigits: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 192.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        Text = 'Create Random Digits'
+        OnClick = ButtonRandomDigitsClick
+      end
+    end
+  end
+  object GestureManager1: TGestureManager
+    Sensitivity = 80.000000000000000000
+    Left = 440
+    Top = 8
+    GestureData = <
+      item
+        Control = Owner
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
+  end
+end
