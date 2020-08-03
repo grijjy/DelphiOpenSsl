@@ -133,7 +133,7 @@ object FormMain: TFormMain
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 5
-        Text = 'Decode Java Web Token'
+        Text = 'Decode JSON Web Token'
         OnClick = ButtonDecodeJWTClick
       end
       object LabelSignature1: TLabel
@@ -162,7 +162,7 @@ object FormMain: TFormMain
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 6
-        Text = 'Verify Java Web Token'
+        Text = 'Verify JSON Web Token'
         OnClick = ButtonVerifyJWTClick
       end
       object ButtonResetDecode: TButton
@@ -199,8 +199,8 @@ object FormMain: TFormMain
         Size.Height = 321.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        Viewport.Width = 225.000000000000000000
-        Viewport.Height = 321.000000000000000000
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 317.000000000000000000
       end
       object LabelEncoded2: TLabel
         Position.X = 248.000000000000000000
@@ -226,8 +226,8 @@ object FormMain: TFormMain
         Size.Height = 81.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 225.000000000000000000
-        Viewport.Height = 81.000000000000000000
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
       end
       object LabelPayload2: TLabel
         Position.X = 8.000000000000000000
@@ -249,8 +249,8 @@ object FormMain: TFormMain
         Size.Height = 81.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
-        Viewport.Width = 225.000000000000000000
-        Viewport.Height = 81.000000000000000000
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
       end
       object LabelSignature2: TLabel
         Position.X = 8.000000000000000000
@@ -268,8 +268,8 @@ object FormMain: TFormMain
         Size.Height = 81.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
-        Viewport.Width = 225.000000000000000000
-        Viewport.Height = 81.000000000000000000
+        Viewport.Width = 221.000000000000000000
+        Viewport.Height = 77.000000000000000000
       end
       object ButtonEncodeJWT: TButton
         Position.X = 8.000000000000000000
@@ -278,7 +278,7 @@ object FormMain: TFormMain
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 5
-        Text = 'Encode Java Web Token'
+        Text = 'Encode JSON Web Token'
         OnClick = ButtonEncodeJWTClick
       end
       object ButtonResetEncode: TButton
@@ -334,8 +334,8 @@ object FormMain: TFormMain
         Size.Height = 169.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 4
-        Viewport.Width = 457.000000000000000000
-        Viewport.Height = 169.000000000000000000
+        Viewport.Width = 453.000000000000000000
+        Viewport.Height = 165.000000000000000000
       end
       object LabelPrivateKey: TLabel
         Position.X = 8.000000000000000000
@@ -381,8 +381,8 @@ object FormMain: TFormMain
         Size.Height = 153.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 5
-        Viewport.Width = 457.000000000000000000
-        Viewport.Height = 153.000000000000000000
+        Viewport.Width = 437.000000000000000000
+        Viewport.Height = 149.000000000000000000
       end
     end
     object TabItemX509Cert: TTabItem
@@ -537,8 +537,8 @@ object FormMain: TFormMain
         Size.Height = 201.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 8
-        Viewport.Width = 305.000000000000000000
-        Viewport.Height = 201.000000000000000000
+        Viewport.Width = 301.000000000000000000
+        Viewport.Height = 197.000000000000000000
       end
       object LabelX509PrivateKey: TLabel
         Position.X = 168.000000000000000000
@@ -556,8 +556,8 @@ object FormMain: TFormMain
         Size.Height = 121.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 9
-        Viewport.Width = 305.000000000000000000
-        Viewport.Height = 121.000000000000000000
+        Viewport.Width = 301.000000000000000000
+        Viewport.Height = 117.000000000000000000
       end
       object ButtonCreateX509: TButton
         Position.X = 248.000000000000000000
