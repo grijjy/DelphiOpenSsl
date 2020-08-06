@@ -252,7 +252,7 @@ var
   PrivateKey: PEVP_PKEY;
   Ctx: PEVP_MD_CTX;
   SHA256: PEVP_MD;
-  Size: Integer;
+  Size: NativeUInt;
 begin
 	BIOPrivateKey := BIO_new_mem_buf(@APrivateKey[0], Length(APrivateKey));
   try
@@ -345,7 +345,7 @@ const
   EVP_MAX_MD_SIZE = 64;
 var
   MessageAuthCode: PByte;
-  Size: Integer;
+  Size: Cardinal;
   Buffer, Text: TBytes;
 begin
   Size := EVP_MAX_MD_SIZE;
@@ -364,7 +364,7 @@ const
   EVP_MAX_MD_SIZE = 20;
 var
   MessageAuthCode: PByte;
-  Size: Integer;
+  Size: Cardinal;
 begin
   Size := EVP_MAX_MD_SIZE;
   SetLength(Result, Size);
